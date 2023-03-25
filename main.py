@@ -19,8 +19,9 @@ async def hello_word():
     return {"message": "Hello World!"}
 
 
-@app.get("/items/{id}", response_class=HTMLResponse)
+@app.get("/items/{id}", response_class=HTMLResponse)    # явно указываем, что возвращаться будет не json
 async def read_item(request: Request, id: str):
+    # передача "request": request в Jinja2- непременное требование, с этим нужно смириться )
     return templates.TemplateResponse("item_template.html", {"request": request, "id": id})
 
 
